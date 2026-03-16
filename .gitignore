@@ -1,0 +1,7 @@
+node_modules/
+dist/
+playwright-report/
+test-results/
+
+# Dados de sessão autenticada — nunca commitar tokens ou cookies
+.auth/
