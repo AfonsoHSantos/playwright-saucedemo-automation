@@ -20,6 +20,14 @@ export class CheckoutPage {
     this.errorMessage = page.locator('[data-test="error"]');
   }
 
+  /**
+   * Preenche as informações pessoais necessárias para o checkout
+   * @param firstName - Primeiro nome do usuário (ex: 'João')
+   * @param lastName - Sobrenome do usuário (ex: 'Silva')  
+   * @param postalCode - Código postal/CEP (ex: '12345', '01234-567')
+   * @example
+   * await checkoutPage.fillPersonalInfo('João', 'Silva', '12345');
+   */
   async fillPersonalInfo(firstName: string, lastName: string, postalCode: string) {
     await this.firstNameInput.fill(firstName);
     await this.lastNameInput.fill(lastName);

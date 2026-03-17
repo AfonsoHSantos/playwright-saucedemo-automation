@@ -20,7 +20,13 @@ export class LoginPage {
     await this.page.goto('/');
   }
 
-  // O método age — não valida. Quem decide o que é sucesso é o teste.
+  /**
+   * Realiza o processo de login na aplicação
+   * @param username - Nome de usuário para autenticação (ex: 'standard_user', 'locked_out_user')
+   * @param password - Senha para autenticação (geralmente 'secret_sauce')
+   * @example
+   * await loginPage.login('standard_user', 'secret_sauce');
+   */
   async login(username: string, password: string) {
     await this.usernameInput.fill(username);
     await this.passwordInput.fill(password);

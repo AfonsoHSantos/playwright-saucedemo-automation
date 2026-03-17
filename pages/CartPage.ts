@@ -22,6 +22,13 @@ export class CartPage {
     await this.checkoutButton.click();
   }
 
+  /**
+   * Remove um item específico do carrinho
+   * @param productName - Nome exato do produto a ser removido do carrinho
+   * (ex: 'Sauce Labs Backpack', 'Sauce Labs Bike Light')
+   * @example
+   * await cartPage.removeItem('Sauce Labs Backpack');
+   */
   async removeItem(productName: string) {
     const item = this.page.locator('.cart_item').filter({ hasText: productName });
     await item.getByRole('button', { name: /remove/i }).click();
