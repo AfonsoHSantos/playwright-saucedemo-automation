@@ -9,6 +9,7 @@ export class CheckoutPage {
   readonly finishButton: Locator;
   readonly confirmationHeader: Locator;
   readonly errorMessage: Locator;
+  readonly subtotalLabel: Locator;
 
   constructor(private page: Page) {
     this.firstNameInput = page.locator('[data-test="firstName"]');
@@ -18,6 +19,7 @@ export class CheckoutPage {
     this.finishButton = page.locator('[data-test="finish"]');
     this.confirmationHeader = page.locator('[data-test="complete-header"]');
     this.errorMessage = page.locator('[data-test="error"]');
+    this.subtotalLabel = page.locator('[data-test="subtotal-label"]');
   }
 
   /**

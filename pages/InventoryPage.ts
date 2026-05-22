@@ -6,12 +6,16 @@ export class InventoryPage {
   readonly cartBadge: Locator;
   readonly cartIcon: Locator;
   readonly sortDropdown: Locator;
+  readonly productNames: Locator;
+  readonly productPrices: Locator;
 
   constructor(private page: Page) {
     this.title = page.locator('[data-test="title"]');
     this.cartBadge = page.locator('.shopping_cart_badge');
     this.cartIcon = page.locator('.shopping_cart_link');
     this.sortDropdown = page.locator('[data-test="product-sort-container"]');
+    this.productNames = page.locator('.inventory_item_name');
+    this.productPrices = page.locator('.inventory_item_price');
   }
 
   async navigate() {

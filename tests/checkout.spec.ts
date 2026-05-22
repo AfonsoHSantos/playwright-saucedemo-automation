@@ -51,5 +51,5 @@ test('exibe o resumo do pedido antes de finalizar', async ({ productInCart, cart
 
   // Valida que está na página de resumo antes de finalizar
   await expect(page).toHaveURL(/checkout-step-two/);
-  await expect(page.locator('[data-test="subtotal-label"]')).toBeVisible();
+  await expect(checkoutPage.subtotalLabel).toBeVisible();
 });

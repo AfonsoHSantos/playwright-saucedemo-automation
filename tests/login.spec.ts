@@ -1,15 +1,19 @@
 import { test as base, expect } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
+import { InventoryPage } from '../pages/InventoryPage';
 
 // Este arquivo testa o fluxo de login — não usa storageState,
 // pois o próprio fluxo de autenticação é o que está sendo validado.
-const test = base.extend<{ loginPage: LoginPage }>({
+const test = base.extend<{ loginPage: LoginPage; inventoryPage: InventoryPage }>({
   loginPage: async ({ page }, use) => {
     await use(new LoginPage(page));
   },
+  inventoryPage: async ({ page }, use) => {
+    await use(new InventoryPage(page));
+  },
 });
 
-test('redireciona para o inventário após login válido', async ({ loginPage, page }) => {
+test('redireciona para o inventário após login válido', async ({ loginPage, inventoryPage, page }) => {
   // Arrange
   await loginPage.navigate();
 
@@ -18,7 +22,7 @@ test('redireciona para o inventário após login válido', async ({ loginPage, p
 
   // Assert — asserção web-first: aguarda e reavalia automaticamente
   await expect(page).toHaveURL(/inventory/);
-  await expect(page.locator('[data-test="title"]')).toHaveText('Products');
+  await expect(inventoryPage.title).toHaveText('Products');
 });
 
 test('exibe erro ao usar credenciais inválidas', async ({ loginPage }) => {

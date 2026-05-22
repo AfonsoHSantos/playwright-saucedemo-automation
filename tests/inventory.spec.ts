@@ -29,24 +29,18 @@ test('remove produto do carrinho e oculta o badge', async ({ inventoryPage }) =>
   await expect(inventoryPage.cartBadge).not.toBeVisible();
 });
 
-test('ordena produtos de A a Z por padrão', async ({ inventoryPage, page }) => {
+test('ordena produtos de A a Z por padrão', async ({ inventoryPage }) => {
   await inventoryPage.navigate();
 
-  const nomes = page.locator('.inventory_item_name');
-  const primeiro = nomes.first();
-  const ultimo = nomes.last();
-
-  // Sauce Labs Backpack é o primeiro e Sauce Labs Onesie é o último em ordem alfabética
-  await expect(primeiro).toHaveText('Sauce Labs Backpack');
-  await expect(ultimo).toHaveText('Test.allTheThings() T-Shirt (Red)');
+  // Sauce Labs Backpack é o primeiro e Test.allTheThings() T-Shirt (Red) é o último em ordem alfabética
+  await expect(inventoryPage.productNames.first()).toHaveText('Sauce Labs Backpack');
+  await expect(inventoryPage.productNames.last()).toHaveText('Test.allTheThings() T-Shirt (Red)');
 });
 
-test('ordena produtos por preço do menor para o maior', async ({ inventoryPage, page }) => {
+test('ordena produtos por preço do menor para o maior', async ({ inventoryPage }) => {
   await inventoryPage.navigate();
   await inventoryPage.sortBy('lohi');
 
-  const precos = page.locator('.inventory_item_price');
-
   // O item mais barato deve ser o primeiro
-  await expect(precos.first()).toHaveText('$7.99');
+  await expect(inventoryPage.productPrices.first()).toHaveText('$7.99');
 });
